@@ -15,14 +15,16 @@ const Registration = () => {
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
+    //Fce kontrolující validitu hodnot ve formuláři
+    //Do konzole se vypíšou hodnoty objektu "user", pokud jsou splněny všechny podmínky
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        /* if(!user.email.includes("@")){
+        if(!user.email.includes("@")){
             setEmailCheck(false)
         } else {
             setEmailCheck(true)
-        } */
+        }
         
         if(user.password !== user.passwordConfirm || (user.password === "" || user.passwordConfirm === "")){
             setPasswordCheck(false)
@@ -32,7 +34,7 @@ const Registration = () => {
         }
     }
 
-    // Funkce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné
+    // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné
     const fillInName = () => {
 
         let userName = ""
