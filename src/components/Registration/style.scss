@@ -28,5 +28,13 @@ section{
             width: 25%;
             margin: auto;
         }
+
+        .wrongInput{
+            outline: solid 2px red;
+        }
+
+        .correctInput{
+            outline: none;
+        }
     }
 }
