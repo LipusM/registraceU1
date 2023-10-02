@@ -11,19 +11,19 @@ Objekt bude mít následující strukturu:
 
 Stylování komponenty řešit nemusíte.
 
-{
-   username: '',
-   email: '',
-   password: '',
-   passwordConfirm: '',
-}
 
+    {
+       username: '',
+       email: '',
+       password: '',
+       passwordConfirm: '',
+    }
 
     
 
-4. Provažte obsah formuláře se stavem user.
-5. Budeme chtít, aby se ve formuláři automaticky vyplnilo políčko User Name, pokud je User Name prázdné a pokud uživatel zadá validní email. Validní email poznáme tak, že obsahuje zavináč. Do User Name se pak vyplní část emailu před zavináčem.
-6. Tlačítko pro odeslání formuláře nechť vypíše stavový objekt do konzole.
+3. Provažte obsah formuláře se stavem user.
+4. Budeme chtít, aby se ve formuláři automaticky vyplnilo políčko User Name, pokud je User Name prázdné a pokud uživatel zadá validní email. Validní email poznáme tak, že obsahuje zavináč. Do User Name se pak vyplní část emailu před zavináčem.
+5. Tlačítko pro odeslání formuláře nechť vypíše stavový objekt do konzole.
 
 
 
