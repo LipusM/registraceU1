@@ -17,7 +17,7 @@ const Registration = () => {
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
-    //Fce kontrolující validitu hodnot ve formuláři
+    //Hl. fce kontrolující validitu hodnot ve formuláři
     //Do konzole se vypíšou hodnoty objektu "user", pokud jsou splněny všechny podmínky
     const handleSubmit = (e) => {
         e.preventDefault()
