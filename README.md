@@ -9,17 +9,14 @@ Stylování komponenty řešit nemusíte.
 2. V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři.
 Objekt bude mít následující strukturu: 
 
+Stylování komponenty řešit nemusíte.
 
-
-
-    
-
-    {
-       username: '',
-       email: '',
-       password: '',
-       passwordConfirm: '',
-    }
+{
+   username: '',
+   email: '',
+   password: '',
+   passwordConfirm: '',
+}
 
 
     
