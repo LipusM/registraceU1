@@ -5,12 +5,14 @@ import { useState } from "react"
 
 const Registration = () => {
 
-    const [user, setUser] = useState({
+    //Zadaná data
+    const initialData = {
         username: "",
         email: "",
         password: "",
         passwordConfirm: "",
-    })
+    }
+    const [user, setUser] = useState(initialData)
 
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
@@ -20,17 +22,23 @@ const Registration = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        if(!user.email.includes("@")){
+        //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
+        if(!user.email.includes("@")){ 
             setEmailCheck(false)
         } else {
             setEmailCheck(true)
         }
         
+        //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty
         if(user.password !== user.passwordConfirm || (user.password === "" || user.passwordConfirm === "")){
             setPasswordCheck(false)
             setUser({...user, password: "", passwordConfirm: ""})
         } else {
             setPasswordCheck(true)
+        }
+
+        if(passwordCheck && emailCheck){
+            c(user)
         }
     }
 
@@ -48,7 +56,8 @@ const Registration = () => {
     return (
         <section>
             <form id="registrationForm" onSubmit={handleSubmit}>
-                <input onBlur={fillInName} className={!emailCheck ? "wrongInput" : "correctInput"} value={user.email} 
+                <input onBlur={fillInName} className={!emailCheck ? "wrongInput" : "correctInput"} 
+                value={user.email} 
                 onChange={ e => setUser({...user, email: e.target.value})} 
                 type="text" placeholder="Email address"/>
                 
@@ -56,11 +65,13 @@ const Registration = () => {
                 onChange={ e => setUser({...user, username: e.target.value})} 
                 type="text" placeholder="User name"/>
 
-                <input className={!passwordCheck ? "wrongInput" : "correctInput"} value={user.password} 
+                <input className={!passwordCheck ? "wrongInput" : "correctInput"} 
+                value={user.password} 
                 onChange={ e => setUser({...user, password: e.target.value})} 
                 type="password" placeholder="Password"/>
                 
-                <input className={!passwordCheck ? "wrongInput" : "correctInput"} value={user.passwordConfirm} 
+                <input className={!passwordCheck ? "wrongInput" : "correctInput"} 
+                value={user.passwordConfirm} 
                 onChange={ e => setUser({...user, passwordConfirm: e.target.value})} 
                 type="password" placeholder="Confirm password"/>  
         
