@@ -7,7 +7,7 @@ Stylování komponenty řešit nemusíte.
 
 1. Vytvořte složku src/components a založte v ní komponentu Registration.
 2. V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři.
-Objekt bude mít následující strukturu: 
+    
 
 Objekt bude mít následující strukturu:
 
