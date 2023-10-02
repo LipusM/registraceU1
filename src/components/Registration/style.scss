@@ -1,0 +1,32 @@
+section{
+    margin: auto;
+    width: 90%;
+
+    #registrationForm{
+        display: flex;
+        flex-direction: column;
+
+        margin: auto;
+        width: 20%;
+
+        input, button {
+            border: none;
+            border-radius: 5px;
+            margin-bottom: 10px;
+
+            background-color: rgb(96, 119, 137, 0.4);
+            color: black;
+
+            padding: 20px;
+            
+            &:focus{
+                outline: solid 2px rgb(124, 30, 30);
+            }
+        }
+
+        button{
+            width: 25%;
+            margin: auto;
+        }
+    }
+}
