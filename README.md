@@ -9,7 +9,7 @@ Stylování komponenty řešit nemusíte.
 2. V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři.
 Objekt bude mít následující strukturu: 
 
-Stylování komponenty řešit nemusíte.
+Objekt bude mít následující strukturu:
 
 
     {
