@@ -32,6 +32,7 @@ const Registration = () => {
         }
     }
 
+    // Funkce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné
     const fillInName = () => {
 
         let userName = ""
