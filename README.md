@@ -11,8 +11,6 @@ Objekt bude mít následující strukturu:
 
 Stylování komponenty řešit nemusíte.
 
-    Vytvořte složku src/components a založte v ní komponentu Registration.
-    V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři. Objekt bude mít následující strukturu:
 
     {
        username: '',
@@ -21,7 +19,7 @@ Stylování komponenty řešit nemusíte.
        passwordConfirm: '',
     }
 
-    Provažte obsah formuláře se stavem user.
+    
 
 4. Provažte obsah formuláře se stavem user.
 5. Budeme chtít, aby se ve formuláři automaticky vyplnilo políčko User Name, pokud je User Name prázdné a pokud uživatel zadá validní email. Validní email poznáme tak, že obsahuje zavináč. Do User Name se pak vyplní část emailu před zavináčem.
