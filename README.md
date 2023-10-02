@@ -10,7 +10,7 @@ Stylování komponenty řešit nemusíte.
 Objekt bude mít následující strukturu: 
 
 
-Stylování komponenty řešit nemusíte.
+
 
     
 
