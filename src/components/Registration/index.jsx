@@ -2,6 +2,7 @@ const c = console.log.bind(document)
 
 import "./style.scss"
 import { useState } from "react"
+import classNames from "classnames"
 
 const Registration = () => {
 
@@ -37,7 +38,7 @@ const Registration = () => {
             setPasswordCheck(true)
         }
 
-        if(passwordCheck && emailCheck){
+        if(user.password === user.passwordConfirm && user.email){
             c(user)
         }
     }
