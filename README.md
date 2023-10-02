@@ -5,10 +5,9 @@ V projektu připraveném v tomto repozitáři vytvořte React komponentu Registr
 ![obrazek](https://github.com/LipusM/registraceU1/assets/123497933/f4752d7c-15fb-4fe5-9727-29ef9bed7fda)
 
 
-Stylování komponenty řešit nemusíte.
-
-    1. Vytvořte složku src/components a založte v ní komponentu Registration.
-    2. V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři. Objekt bude mít následující strukturu:
+Stylování komponenty řešit nemusíte.    
+1. Vytvořte složku src/components a založte v ní komponentu Registration.
+2. V komponentě vytvořte jeden stav user. Ve stavu bude objekt reprezentující všechan data ve formuláři. Objekt bude mít následující strukturu:
 
     {
        username: '',
