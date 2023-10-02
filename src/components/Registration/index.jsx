@@ -12,9 +12,14 @@ const Registration = () => {
         passwordConfirm: "",
     })
 
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
+    }
+
     return (
         <section>
-            <form id="registrationForm">
+            <form id="registrationForm" onSubmit={handleSubmit}>
                 <input type="text" placeholder="Email address"/>
                 <input type="text" placeholder="User name"/>
                 <input type="text" placeholder="Password"/>
