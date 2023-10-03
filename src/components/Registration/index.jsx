@@ -1,7 +1,7 @@
 const c = console.log.bind(document)
 
 import "./style.scss"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import classNames from "classnames"
 
 const Registration = () => {
@@ -21,7 +21,7 @@ const Registration = () => {
     let name = user.username
     let email = user.email
 
-    //Pro kontrolu správnosti hesla a e-mailu
+    //V rámci kontroly správnosti hesla a e-mailu pro přidávání tříd
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
@@ -51,15 +51,19 @@ const Registration = () => {
             setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
 
-        if(pass.trim().length > 0){
+    }
+
+    //Pokud passwordCheck = true (resp. hesla se shodují) a emailCheck = true
+    useEffect(() => {
+        if(passwordCheck && emailCheck){
             c(user)
         }
-    }
+    }, [passwordCheck, emailCheck])
 
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
     const fillInName = () => {
 
-        if(email.includes("@") && name === ""){
+        if(email.includes("@") && !name.trim().length > 0){
             setUser({...user, username: email.slice(0, email.indexOf("@")) })
         } 
 
