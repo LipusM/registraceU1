@@ -15,6 +15,13 @@ const Registration = () => {
     }
     const [user, setUser] = useState(initialData)
 
+    //Delegace stavových hodnot do proměnných (pro zkrácení fuknčího kódu)
+    let pass = user.password
+    let passConfirm = user.passwordConfirm
+    let name = user.username
+    let email = user.email
+
+    //Pro kontrolu správnosti hesla a e-mailu
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
@@ -31,14 +38,20 @@ const Registration = () => {
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty
-        if(user.password !== user.passwordConfirm || (user.password === "" || user.passwordConfirm === "")){
+        if(pass !== passConfirm || (pass === "" || passConfirm === "")){
             setPasswordCheck(false)
             setUser({...user, password: "", passwordConfirm: ""})
         } else {
             setPasswordCheck(true)
         }
 
-        if(user.password === user.passwordConfirm && user.email){
+        //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
+        //Tak se doplní hodnota před @
+        if(name === ""){
+            setUser({...user, username: email.slice(0, email.indexOf("@"))})
+        }
+
+        if(pass === passConfirm && email){
             c(user)
         }
     }
@@ -48,8 +61,8 @@ const Registration = () => {
 
         let userName = ""
 
-        if(user.email.includes("@") && user.username === ""){
-            userName = user.email.slice(0, user.email.indexOf("@"))
+        if(email.includes("@") && name === ""){
+            userName = email.slice(0, email.indexOf("@"))
             setUser({...user, username: userName})
         } 
     }
