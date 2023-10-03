@@ -25,8 +25,7 @@ const Registration = () => {
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
-    //Hl. fce kontrolující validitu hodnot ve formuláři
-    //Do konzole se vypíšou hodnoty objektu "user", pokud jsou splněny všechny podmínky
+    //**********Hl. fce kontrolující validitu hodnot ve formuláři.**********//
     const handleSubmit = (e) => {
         e.preventDefault()
 
@@ -37,7 +36,7 @@ const Registration = () => {
             setEmailCheck(true)
         }
         
-        //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty
+        //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
         if(pass !== passConfirm || (pass === "" || passConfirm === "")){
             setPasswordCheck(false)
             setUser({...user, password: "", passwordConfirm: ""})
@@ -47,6 +46,7 @@ const Registration = () => {
 
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
         //Tak se doplní hodnota před @
+        //Tuto část jsem si přidal (resp. není dle zadání)
         if(name === ""){
             setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
@@ -56,13 +56,13 @@ const Registration = () => {
         }
     }
 
-    // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné
+    // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
     const fillInName = () => {
 
         if(email.includes("@") && name === ""){
             setUser({...user, username: email.slice(0, email.indexOf("@")) })
         } 
-        
+
     }
 
     return (
