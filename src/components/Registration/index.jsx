@@ -59,12 +59,10 @@ const Registration = () => {
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné
     const fillInName = () => {
 
-        let userName = ""
-
         if(email.includes("@") && name === ""){
-            userName = email.slice(0, email.indexOf("@"))
-            setUser({...user, username: userName})
+            setUser({...user, username: email.slice(0, email.indexOf("@")) })
         } 
+        
     }
 
     return (
