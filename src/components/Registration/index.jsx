@@ -30,14 +30,14 @@ const Registration = () => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!user.email.includes("@")){ 
+        if(!email.includes("@")){ 
             setEmailCheck(false)
         } else {
             setEmailCheck(true)
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
-        if(pass !== passConfirm || (pass === "" || passConfirm === "")){
+        if( pass !== passConfirm || !pass.trim().length > 0 || !passConfirm.trim().length > 0){
             setPasswordCheck(false)
             setUser({...user, password: "", passwordConfirm: ""})
         } else {
@@ -51,7 +51,7 @@ const Registration = () => {
             setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
 
-        if(pass === passConfirm && email){
+        if(pass.trim().length > 0){
             c(user)
         }
     }
@@ -71,7 +71,7 @@ const Registration = () => {
                 <input onBlur={fillInName} className={!emailCheck ? "wrongInput" : "correctInput"} 
                 value={user.email} 
                 onChange={ e => setUser({...user, email: e.target.value})} 
-                type="text" placeholder="Email address"/>
+                type="email" placeholder="Email address"/>
                 
                 <input value={user.username} 
                 onChange={ e => setUser({...user, username: e.target.value})} 
