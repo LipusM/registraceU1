@@ -15,12 +15,6 @@ const Registration = () => {
     }
     const [user, setUser] = useState(initialData)
 
-    //Delegace stavových hodnot do proměnných (pro zkrácení fuknčího kódu)
-    let pass = user.password
-    let passConfirm = user.passwordConfirm
-    let name = user.username
-    let email = user.email
-
     //V rámci kontroly správnosti hesla a e-mailu pro přidávání tříd
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
@@ -30,16 +24,19 @@ const Registration = () => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!email.includes("@")){ 
+        if(!user.email.includes("@")){ 
             setEmailCheck(false)
         } else {
             setEmailCheck(true)
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
-        if( pass !== passConfirm || !pass.trim().length > 0 || !passConfirm.trim().length > 0){
+        if( user.password !== user.passwordConfirm || !user.password.trim().length > 0 || !user.passwordConfirm.trim().length > 0){
             setPasswordCheck(false)
-            setUser({...user, password: "", passwordConfirm: ""})
+
+            setTimeout(() => {
+                setUser({...user, password: "", passwordConfirm: ""})
+            }, 0)
         } else {
             setPasswordCheck(true)
         }
@@ -47,8 +44,8 @@ const Registration = () => {
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
         //Tak se doplní hodnota před @
         //Tuto část jsem si přidal (resp. není dle zadání)
-        if(name === ""){
-            setUser({...user, username: email.slice(0, email.indexOf("@"))})
+        if(user.username === ""){
+            setUser({...user, username: user.email.slice(0, user.email.indexOf("@"))})
         }
 
     }
@@ -58,13 +55,13 @@ const Registration = () => {
         if(passwordCheck && emailCheck){
             c(user)
         }
-    }, [passwordCheck, emailCheck])
+    }, [passwordCheck, emailCheck]) 
 
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
     const fillInName = () => {
 
-        if(email.includes("@") && !name.trim().length > 0){
-            setUser({...user, username: email.slice(0, email.indexOf("@")) })
+        if(user.email.includes("@") && !user.username.trim().length > 0){
+            setUser({...user, username: user.email.slice(0, user.email.indexOf("@")) })
         } 
 
     }
