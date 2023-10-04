@@ -15,6 +15,9 @@ const Registration = () => {
     }
     const [user, setUser] = useState(initialData)
 
+    //Destrukturalizace proměnných
+    const {username, email, password, passwordConfirm} = user
+
     //V rámci kontroly správnosti hesla a e-mailu pro přidávání tříd
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
@@ -24,14 +27,14 @@ const Registration = () => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!user.email.includes("@")){ 
+        if(!email.includes("@")){ 
             setEmailCheck(false)
         } else {
             setEmailCheck(true)
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
-        if( user.password !== user.passwordConfirm || !user.password.trim().length > 0 || !user.passwordConfirm.trim().length > 0){
+        if( password !== passwordConfirm || !password.trim().length > 0 || !passwordConfirm.trim().length > 0){
             setPasswordCheck(false)
 
             setTimeout(() => {
@@ -44,8 +47,8 @@ const Registration = () => {
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
         //Tak se doplní hodnota před @
         //Tuto část jsem si přidal (resp. není dle zadání)
-        if(user.username === ""){
-            setUser({...user, username: user.email.slice(0, user.email.indexOf("@"))})
+        if(username === ""){
+            setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
 
     }
@@ -60,8 +63,8 @@ const Registration = () => {
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
     const fillInName = () => {
 
-        if(user.email.includes("@") && !user.username.trim().length > 0){
-            setUser({...user, username: user.email.slice(0, user.email.indexOf("@")) })
+        if(email.includes("@") && !username.trim().length > 0){
+            setUser({...user, username: email.slice(0, email.indexOf("@")) })
         } 
 
     }
@@ -70,7 +73,7 @@ const Registration = () => {
         <section>
             <form id="registrationForm" onSubmit={handleSubmit}>
                 <input onBlur={fillInName} className={!emailCheck ? "wrongInput" : "correctInput"} 
-                value={user.email} 
+                value={email} 
                 onChange={ e => setUser({...user, email: e.target.value})} 
                 type="email" placeholder="Email address"/>
                 
@@ -79,12 +82,12 @@ const Registration = () => {
                 type="text" placeholder="User name"/>
 
                 <input className={!passwordCheck ? "wrongInput" : "correctInput"} 
-                value={user.password} 
+                value={password} 
                 onChange={ e => setUser({...user, password: e.target.value})} 
                 type="password" placeholder="Password"/>
                 
                 <input className={!passwordCheck ? "wrongInput" : "correctInput"} 
-                value={user.passwordConfirm} 
+                value={passwordConfirm} 
                 onChange={ e => setUser({...user, passwordConfirm: e.target.value})} 
                 type="password" placeholder="Confirm password"/>  
         
