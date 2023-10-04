@@ -6,13 +6,15 @@ import classNames from "classnames"
 
 const Registration = () => {
 
-    //Zadaná data
+    //Originální data
     const initialData = {
         username: "",
         email: "",
         password: "",
         passwordConfirm: "",
     }
+
+    //Zadání ori. dat do stavu
     const [user, setUser] = useState(initialData)
 
     //Destrukturalizace proměnných
