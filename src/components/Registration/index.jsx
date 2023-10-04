@@ -79,7 +79,7 @@ const Registration = () => {
                 onChange={ e => setUser({...user, email: e.target.value})} 
                 type="email" placeholder="Email address"/>
                 
-                <input value={user.username} 
+                <input value={username}
                 onChange={ e => setUser({...user, username: e.target.value})} 
                 type="text" placeholder="User name"/>
 
