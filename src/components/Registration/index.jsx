@@ -24,26 +24,37 @@ const Registration = () => {
     const [passwordCheck, setPasswordCheck] = useState(true)
     const [emailCheck, setEmailCheck] = useState(true)
 
+    /* const [statusCheck, setStatusCheck] = useState({
+        passwordCheck: true,
+        emailCheck: true,
+    })
+    const {passwordCheck, emailCheck} = statusCheck */
+
     //**********Hl. fce kontrolující validitu hodnot ve formuláři.**********//
     const handleSubmit = (e) => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!email.includes("@")){ 
+        if(!email.includes("@") || !email.trim().length > 0){ 
             setEmailCheck(false)
+            /* setStatusCheck({ ...statusCheck, emailCheck: false }); */
+            c(emailCheck)
         } else {
             setEmailCheck(true)
+            /* setStatusCheck({...statusCheck, emailCheck: true}) */
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
         if( password !== passwordConfirm || !password.trim().length > 0 || !passwordConfirm.trim().length > 0){
             setPasswordCheck(false)
+            /* setStatusCheck({...statusCheck, passwordCheck: false}) */
 
             setTimeout(() => {
                 setUser({...user, password: "", passwordConfirm: ""})
             }, 0)
         } else {
             setPasswordCheck(true)
+            /* setStatusCheck({...statusCheck, passwordCheck: true}) */
         }
 
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
