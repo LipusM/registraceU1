@@ -38,7 +38,6 @@ const Registration = () => {
         if(!email.includes("@") || !email.trim().length > 0){ 
             setEmailCheck(false)
             /* setValidationCheck({ ...validationCheck, emailCheck: false }); */
-            c(emailCheck)
         } else {
             setEmailCheck(true)
             /* setValidationCheck({...validationCheck, emailCheck: true}) */
@@ -60,7 +59,7 @@ const Registration = () => {
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
         //Tak se doplní hodnota před @ a při odeslání formu nebude username nikdy prázdný. Proto se pro daný input nepřidává třída wrongInput
         //Tuto část jsem si přidal (resp. není dle zadání)
-        if(username === ""){
+        if(username.trim().length > 0){
             setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
 
