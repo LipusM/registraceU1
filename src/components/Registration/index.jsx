@@ -20,67 +20,53 @@ const Registration = () => {
     //Destrukturalizace proměnných
     const {username, email, password, passwordConfirm} = user
 
-    //V rámci kontroly správnosti hesla a e-mailu pro přidávání tříd
-    /* const [passwordCheck, setPasswordCheck] = useState(true)
-    const [emailCheck, setEmailCheck] = useState(true) */
-
+    //
     const [validationCheck, setValidationCheck] = useState({
         passwordCheck: true,
         emailCheck: true,
+        nameCheck: true,
     })
-    const {passwordCheck, emailCheck} = validationCheck
+    const {passwordCheck, emailCheck, nameCheck} = validationCheck
 
     //**********Hl. fce kontrolující validitu hodnot ve formuláři.**********//
     const handleSubmit = (e) => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!email.includes("@") || !(email.trim().length > 0) ){ 
-            /* setEmailCheck(false) */
-            /* setValidationCheck({ ...validationCheck, emailCheck: false }) */
+        if(!email.includes("@") || !email.trim().length > 0){ 
             setValidationCheck( prev => ({...prev, emailCheck: false}) )
-            c(validationCheck)
         } else {
-            /* setEmailCheck(true) */
-            /* setValidationCheck({...validationCheck, emailCheck: true}) */
             setValidationCheck(prev => ({...prev, emailCheck: true}) )
+        }
+        
+        //Kontrola prázdnosti inputu pro username
+        if( !username.trim().length > 0 && email.includes("@") ){
+            c("Funguje to?")
+            setUser( {...user, username: email.slice(0, email.indexOf("@"))} )
+            setValidationCheck(prev => ({...prev, nameCheck: true}) )
+            
+        } else if( !username.trim().length > 0 ){
+            setValidationCheck(prev => ({...prev, nameCheck: false}) )
+        } 
+        else {
+            setValidationCheck(prev => ({...prev, nameCheck: true}) )
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
         if( password !== passwordConfirm || !password.trim().length > 0 || !passwordConfirm.trim().length > 0){
-            /* setPasswordCheck(false) */
-            /* setValidationCheck({...validationCheck, passwordCheck: false}) */
+
             setValidationCheck(prev => ({...prev, passwordCheck: false}))
+            setUser(prev => ({...prev, password: "", passwordConfirm: ""}))
 
-            setTimeout(() => {
-                setUser({...user, password: "", passwordConfirm: ""})
-            }, 0)
         } else {
-            /* setPasswordCheck(true) */
-            /* setValidationCheck({...validationCheck, passwordCheck: true}) */
             setValidationCheck(prev => ({...prev, passwordCheck: true}))
-        }
-
-        //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
-        //Tak se doplní hodnota před @ a při odeslání formu nebude username nikdy prázdný. Proto se pro daný input nepřidává třída wrongInput
-        //Tuto část jsem si přidal (resp. není dle zadání)
-        if(username.trim().length > 0){
-            setUser({...user, username: email.slice(0, email.indexOf("@"))})
         }
 
     }
 
-    //Pokud passwordCheck = true (resp. hesla se shodují) a emailCheck = true
-    /* useEffect(() => {
-        if(passwordCheck && emailCheck){
-            c(user)
-        }
-    }, [passwordCheck, emailCheck])  */
-
+    //Výpis stavu "user"
     useEffect(() => {
-        /* if(passwordCheck && emailCheck){ */
             c(user)
-        /* } */
     }, [validationCheck]) 
 
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
@@ -100,7 +86,7 @@ const Registration = () => {
                 onChange={ e => setUser({...user, email: e.target.value})} 
                 type="email" placeholder="Email address"/>
                 
-                <input value={username}
+                <input value={username} className={!nameCheck ? "wrongInput" : "correctInput"} 
                 onChange={ e => setUser({...user, username: e.target.value})} 
                 type="text" placeholder="User name"/>
 
