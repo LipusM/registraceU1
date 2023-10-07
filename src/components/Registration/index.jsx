@@ -21,39 +21,44 @@ const Registration = () => {
     const {username, email, password, passwordConfirm} = user
 
     //V rámci kontroly správnosti hesla a e-mailu pro přidávání tříd
-    const [passwordCheck, setPasswordCheck] = useState(true)
-    const [emailCheck, setEmailCheck] = useState(true)
+    /* const [passwordCheck, setPasswordCheck] = useState(true)
+    const [emailCheck, setEmailCheck] = useState(true) */
 
-    /* const [validationCheck, setValidationCheck] = useState({
+    const [validationCheck, setValidationCheck] = useState({
         passwordCheck: true,
         emailCheck: true,
     })
-    const {passwordCheck, emailCheck} = validationCheck */
+    const {passwordCheck, emailCheck} = validationCheck
 
     //**********Hl. fce kontrolující validitu hodnot ve formuláři.**********//
     const handleSubmit = (e) => {
         e.preventDefault()
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
-        if(!email.includes("@") || !email.trim().length > 0){ 
-            setEmailCheck(false)
-            /* setValidationCheck({ ...validationCheck, emailCheck: false }); */
+        if(!email.includes("@") || !(email.trim().length > 0) ){ 
+            /* setEmailCheck(false) */
+            /* setValidationCheck({ ...validationCheck, emailCheck: false }) */
+            setValidationCheck( prev => ({...prev, emailCheck: false}) )
+            c(validationCheck)
         } else {
-            setEmailCheck(true)
+            /* setEmailCheck(true) */
             /* setValidationCheck({...validationCheck, emailCheck: true}) */
+            setValidationCheck(prev => ({...prev, emailCheck: true}) )
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
         if( password !== passwordConfirm || !password.trim().length > 0 || !passwordConfirm.trim().length > 0){
-            setPasswordCheck(false)
+            /* setPasswordCheck(false) */
             /* setValidationCheck({...validationCheck, passwordCheck: false}) */
+            setValidationCheck(prev => ({...prev, passwordCheck: false}))
 
             setTimeout(() => {
                 setUser({...user, password: "", passwordConfirm: ""})
             }, 0)
         } else {
-            setPasswordCheck(true)
+            /* setPasswordCheck(true) */
             /* setValidationCheck({...validationCheck, passwordCheck: true}) */
+            setValidationCheck(prev => ({...prev, passwordCheck: true}))
         }
 
         //Pokud username prázdný při submitu (provedla se fce fillName, ale pak username smazal a znovu nešel do inputu pro e-mai.)
@@ -66,17 +71,17 @@ const Registration = () => {
     }
 
     //Pokud passwordCheck = true (resp. hesla se shodují) a emailCheck = true
-    useEffect(() => {
-        if(passwordCheck && emailCheck){
-            c(user)
-        }
-    }, [passwordCheck, emailCheck]) 
-
     /* useEffect(() => {
         if(passwordCheck && emailCheck){
             c(user)
         }
-    }, [validationCheck])  */
+    }, [passwordCheck, emailCheck])  */
+
+    useEffect(() => {
+        /* if(passwordCheck && emailCheck){ */
+            c(user)
+        /* } */
+    }, [validationCheck]) 
 
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
     const fillInName = () => {
