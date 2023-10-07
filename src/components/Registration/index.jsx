@@ -20,12 +20,14 @@ const Registration = () => {
     //Destrukturalizace proměnných
     const {username, email, password, passwordConfirm} = user
 
-    //
+    //Vytvoření stavu pro kontrolu vyplněnosti inputů
     const [validationCheck, setValidationCheck] = useState({
         passwordCheck: true,
         emailCheck: true,
         nameCheck: true,
     })
+
+    //Destrukturalizace proměnných
     const {passwordCheck, emailCheck, nameCheck} = validationCheck
 
     //**********Hl. fce kontrolující validitu hodnot ve formuláři.**********//
@@ -40,8 +42,9 @@ const Registration = () => {
         }
         
         //Kontrola prázdnosti inputu pro username
+        //Pokud je "email" validní a "username" prázdný, doplní se do "username" hodnota před "@" z "email". "nameCheck" bude true
+        //Pokud jenom "username" prázdné, tak "nameCheck" bude false
         if( !username.trim().length > 0 && email.includes("@") ){
-            c("Funguje to?")
             setUser( {...user, username: email.slice(0, email.indexOf("@"))} )
             setValidationCheck(prev => ({...prev, nameCheck: true}) )
             
