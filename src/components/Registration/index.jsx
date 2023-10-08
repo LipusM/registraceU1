@@ -36,9 +36,11 @@ const Registration = () => {
 
         //Kontrola validnost e-mailu (dle zadání stačí, že obsahuje "@")
         if(!email.includes("@") || !email.trim().length > 0){ 
-            setValidationCheck( prev => ({...prev, emailCheck: false}) )
+            /* setValidationCheck( prev => ({...prev, emailCheck: false}) ) */
+            setValidationCheck({...validationCheck, emailCheck: false})
         } else {
-            setValidationCheck(prev => ({...prev, emailCheck: true}) )
+            /* setValidationCheck(prev => ({...prev, emailCheck: true}) ) */
+            setValidationCheck({...validationCheck, emailCheck: true})
         }
         
         //Kontrola prázdnosti inputu pro username
@@ -46,23 +48,30 @@ const Registration = () => {
         //Pokud jenom "username" prázdné, tak "nameCheck" bude false
         if( !username.trim().length > 0 && email.includes("@") ){
             setUser( {...user, username: email.slice(0, email.indexOf("@"))} )
-            setValidationCheck(prev => ({...prev, nameCheck: true}) )
+            /* setValidationCheck(prev => ({...prev, nameCheck: true}) ) */
+            setValidationCheck({...validationCheck, nameCheck: true}) 
             
         } else if( !username.trim().length > 0 ){
-            setValidationCheck(prev => ({...prev, nameCheck: false}) )
+            /* setValidationCheck(prev => ({...prev, nameCheck: false}) ) */
+            setValidationCheck({...validationCheck, nameCheck: false})
         } 
         else {
-            setValidationCheck(prev => ({...prev, nameCheck: true}) )
+            /* setValidationCheck(prev => ({...prev, nameCheck: true}) ) */
+            setValidationCheck({...validationCheck, nameCheck: true})
         }
         
         //Kontrola shodnosti hesel a že se nejedná o prázdné hodnoty (dle zadání)
         if( password !== passwordConfirm || !password.trim().length > 0 || !passwordConfirm.trim().length > 0){
 
-            setValidationCheck(prev => ({...prev, passwordCheck: false}))
-            setUser(prev => ({...prev, password: "", passwordConfirm: ""}))
+            /* setValidationCheck(prev => ({...prev, passwordCheck: false})) */
+            setValidationCheck({...validationCheck, passwordCheck: false})
+
+            /* setUser(prev => ({...prev, password: "", passwordConfirm: ""})) */
+            setUser({...user, password: "", passwordConfirm: ""})
 
         } else {
-            setValidationCheck(prev => ({...prev, passwordCheck: true}))
+            /* setValidationCheck(prev => ({...prev, passwordCheck: true})) */
+            setValidationCheck({...validationCheck, passwordCheck: true})
         }
 
     }
