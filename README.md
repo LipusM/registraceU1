@@ -1,3 +1,6 @@
+**DŮLEŽITÉ:**
+**Zvolil jsem Vite balíček. Spuštění je přes npm run dev**
+
 Registrační formulář
 V projektu připraveném v tomto repozitáři vytvořte React komponentu Registration, která bude představovat registrační formulář do nějaké webové aplikace, viz obrázek.
 
@@ -26,6 +29,3 @@ Objekt bude mít následující strukturu:
 5. Tlačítko pro odeslání formuláře nechť vypíše stavový objekt do konzole.
 
 
-
-**DŮLEŽITÉ:**
-**Zvolil jsem Vite balíček. Spuštění je přes npm run dev**
