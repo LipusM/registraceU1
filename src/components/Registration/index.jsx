@@ -79,6 +79,7 @@ const Registration = () => {
     //Výpis stavu "user"
     useEffect(() => {
             c(user)
+            c(validationCheck)
     }, [validationCheck]) 
 
     // Fce pro automatické vyplnění username, když e-mail obsahuje "@" a zároveň je username prázdné (dle zadání)
